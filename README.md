@@ -6,5 +6,5 @@ npm packages used:
 - ejs
 - body-parser
 
-Frontend tools & framweorks: JS, ejs, bootstrap
+Frontend tools & framweorks: JS, ejs, bootstrap;
 Backend: JS & express
