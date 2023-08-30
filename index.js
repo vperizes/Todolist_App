@@ -23,23 +23,29 @@ app.listen(port, () => {
 })
 
 app.get("/", (req, res) => {
+    res.redirect("home");
+})
+
+app.get("/home", (req, res) => {
     res.render("home.ejs", {
         tasks: tasks,
-        date: today
-    });
+        date: today,
+        title: "Home"
+    })
 })
 
 app.post("/addtodo", (req, res) => {
     const inputText = req.body["todo"];
     tasks.push(inputText);
-    res.redirect("/");
+    res.redirect("/home");
 })
 
 //specific for work tasks
 app.get("/work", (req, res) => {
     res.render("work.ejs", {
         worktasks: workTasks,
-        date: today
+        date: today,
+        title: "Work"
     })
 })
 

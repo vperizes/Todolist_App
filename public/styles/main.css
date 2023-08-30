@@ -15,8 +15,8 @@ body{
 
 .todoApp{
     background-color: #4C4B16;
-    max-width: 400px;
-    min-height: 500px;
+    max-width: 450px;
+    min-height: 600px;
     padding: 20px;
     border-radius: 5%;
     border: 3px solid #898121;
@@ -69,19 +69,42 @@ input.check-size{
     width: 20px;
 }
 
-.apply-color .active a
+/* .apply-color .active a
 {
     background-color: #4C4B16;
     color:#F7F1E5;
     border: 3px solid #898121;
-}
+} */
 
 li.nav-item a:hover,
-.apply-color .active a:hover{
+.apply-color a:hover{
     background-color: #E7B10A;
-}
-
-li.nav-item a{
     color: #4C4B16;
 }
 
+/* li.nav-item a{
+    color: #4C4B16;
+} */
+
+
+.nav-menu{
+    color: #4C4B16;
+}
+
+a:is(:link, :active, :visited).clicked{
+    background-color: #4C4B16;
+    color:#F7F1E5 !important;
+    border: 3px solid #898121;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    background-color: inherit;
+  }
+
+img{
+    width: 20px;
+    height: 20px;
+}
