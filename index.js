@@ -1,10 +1,25 @@
 import express from "express";
 import bodyParser from "body-parser";
+import mongoose, { Schema } from "mongoose";
 
 const app = express();
 const port = 3000;
-var tasks = [];
-var workTasks = [];
+
+// var tasks = [];
+// var workTasks = [];
+
+
+//setting up connection to mongo server and creating (or accessing if already created) todoDB
+mongoose.connect("mongodb://127.0.0.1:27017/todoDB");
+
+//schema for new task
+const taskSchema = new Schema({
+    todo: String
+});
+
+//create task and workTask collection/models to replace old arrays
+const Task = model.mongoose("Task", taskSchema);
+const WorkTask = model.mongoose("WorkTask", taskSchema);
 
 const date = new Date();
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
