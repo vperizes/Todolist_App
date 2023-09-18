@@ -1,0 +1,34 @@
+<%-include("partials/header.ejs") %>
+
+    <body>
+        <div class="container">
+            <div class="todoApp">
+                <div class="heading">
+                    <h1>
+                        <%= date %>
+                    </h1>
+                    <h2>What do you need to get done today?</h2>
+                </div>
+
+                <form action="/addworktodo" method="post">
+                    <input type="text" id="newTodo" name="worktodo" placeholder="Add to-do..." />
+                    <button type="submit" value="Submit">
+                        <img src="/images/plus_button.svg" alt="plus button">
+                    </button>
+                </form>
+
+                <div class="todo-list">
+                    <% if(locals.worktasks) { %>
+                        <% for(var i=0; i < worktasks.length; i++){ %>
+                            <li>
+                                <input type="checkbox" name="check" class="check-size check" value="<%= worktasks[i] %>"/>
+                                <label for="check" class="strikethrough">
+                                    <%= worktasks[i] %>
+                                </label>
+                            </li>
+                            <% } %>
+                                <% } %>
+                </div>
+            </div>
+        </div>
+    </body>

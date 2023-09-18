@@ -1,0 +1,110 @@
+body{
+    background-color: #F7F1E5;
+    color: #F7F1E5;
+    font-family: 'Hind', sans-serif;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    flex-wrap: wrap;
+}
+
+.todoApp{
+    background-color: #4C4B16;
+    max-width: 450px;
+    min-height: 600px;
+    padding: 20px;
+    border-radius: 5%;
+    border: 3px solid #898121;
+    box-shadow: -15px -15px 20px #E7B10A;
+}
+
+.heading{
+    border: 2px solid #E7B10A;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+h1, h2{
+    padding: 5px 10px;
+    margin: 0;
+}
+
+h1{
+    font-weight: 600;
+}
+
+form{
+    display:flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+input, textarea{
+    border-radius: 10px;
+    border: 0;
+    font-family: inherit;
+    font-size: 20px;
+    flex-basis: 100%;
+    background-color: #F7F1E5;
+}
+
+li{
+    list-style-type: none;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+input[type=checkbox]:checked + label.strikethrough {
+    text-decoration: line-through;
+    color: #F7F1E5;
+}
+
+input.check-size{
+    height: 20px;
+    width: 20px;
+}
+
+/* .apply-color .active a
+{
+    background-color: #4C4B16;
+    color:#F7F1E5;
+    border: 3px solid #898121;
+} */
+
+li.nav-item a:hover,
+.apply-color a:hover{
+    background-color: #E7B10A;
+    color: #4C4B16;
+}
+
+/* li.nav-item a{
+    color: #4C4B16;
+} */
+
+
+.nav-menu{
+    color: #4C4B16;
+}
+
+a:is(:link, :active, :visited).clicked{
+    background-color: #4C4B16;
+    color:#F7F1E5 !important;
+    border: 3px solid #898121;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    background-color: inherit;
+  }
+
+img{
+    width: 20px;
+    height: 20px;
+}
