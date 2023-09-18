@@ -66,16 +66,23 @@ app.post("/addtodo", (req, res) => {
 
 //specific for work tasks
 app.get("/work", (req, res) => {
-    res.render("work.ejs", {
-        worktasks: workTasks,
-        date: today,
-        title: "Work"
-    })
+    async function run() {
+        const workTasks = await WorkTask.find({});
+        res.render("work.ejs", {
+            worktasks: workTasks,
+            date: today,
+            title: "Work"
+        })
+    }
+    run();
 })
 
 app.post("/addworktodo", (req, res) => {
     const inputText = req.body["worktodo"];
-    workTasks.push(inputText);
+    const newWorkTodo = new WorkTask({
+        todo: inputText
+    })
+    newWorkTodo.save();
     res.redirect("/work");
 })
 
