@@ -18,8 +18,9 @@ const taskSchema = new Schema({
 });
 
 //create task and workTask collection/models to replace old arrays
-const Task = model.mongoose("Task", taskSchema);
-const WorkTask = model.mongoose("WorkTask", taskSchema);
+const Task = mongoose.model("Task", taskSchema);
+const WorkTask = mongoose.model("WorkTask", taskSchema);
+
 
 const date = new Date();
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -31,7 +32,7 @@ const today = currentDay + ", " + currentMonth + " " + date.getDate();
 
 app.use(express.static("public"));
 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}.`);
@@ -42,16 +43,23 @@ app.get("/", (req, res) => {
 })
 
 app.get("/home", (req, res) => {
-    res.render("home.ejs", {
-        tasks: tasks,
-        date: today,
-        title: "Home"
-    })
+    async function run() {
+        const tasks = await Task.find({});
+        res.render("home.ejs", {
+            tasks: tasks,
+            date: today,
+            title: "Home"
+        })
+    }
+    run();
 })
 
 app.post("/addtodo", (req, res) => {
     const inputText = req.body["todo"];
-    tasks.push(inputText);
+    const newTodo = new Task({
+        todo: inputText
+    })
+    newTodo.save();
     res.redirect("/home");
 })
 

@@ -21,9 +21,9 @@
                     <% if(locals.tasks){ %>
                         <% for(var i=0; i < tasks.length; i++){ %>
                             <li>
-                                <input type="checkbox" name="check" class="check-size check" value="<%= tasks[i] %>" />
+                                <input type="checkbox" name="check" class="check-size check" value="<%= tasks[i].todo %>" />
                                 <label for="check" class="strikethrough">
-                                    <%= tasks[i] %>
+                                    <%= tasks[i].todo %>
                                 </label>
                             </li>
                             <% } %>
