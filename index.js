@@ -56,6 +56,7 @@ app.get("/home", (req, res) => {
 
 app.post("/addtodo", (req, res) => {
     const inputText = req.body["todo"];
+    //creating new document in Task collection
     const newTodo = new Task({
         todo: inputText
     })
