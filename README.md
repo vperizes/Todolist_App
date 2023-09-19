@@ -1,8 +1,8 @@
 # Todolist_App
 Simple todo app.
 
-Features in progress: 
--Mongoose/MongoDB integration --> setting up database
+Added feautres (Sept 19):
+-Database integration using Mongoose/MongoDB
 
 npm packages used:
 - express
