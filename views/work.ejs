@@ -11,7 +11,7 @@
                 </div>
 
                 <form action="/addworktodo" method="post">
-                    <input type="text" id="newTodo" name="worktodo" placeholder="Add to-do..." />
+                    <input type="text" id="newTodo" name="todo" placeholder="Add to-do..." />
                     <button type="submit" value="Submit">
                         <img src="/images/plus_button.svg" alt="plus button">
                     </button>
@@ -19,14 +19,17 @@
 
                 <div class="todo-list">
                     <% if(locals.worktasks) { %>
-                        <% for(var i=0; i < worktasks.length; i++){ %>
-                            <li>
-                                <input type="checkbox" name="check" class="check-size check" value="<%= worktasks[i] %>"/>
-                                <label for="check" class="strikethrough">
-                                    <%= worktasks[i] %>
-                                </label>
-                            </li>
-                            <% } %>
+                        <% worktasks.forEach(worktask=>{ %>
+                            <form action="/deleteWorkTodo" method="post">
+                                <li>
+                                    <input type="checkbox" name="checkbox" id ="check" class="check-size check" onChange="this.form.submit()"
+                                        value="<%= worktask._id %>" />
+                                    <label for="check" class="strikethrough">
+                                        <%= worktask.todo %>
+                                    </label>
+                                </li>
+                            </form>
+                            <% }) %>
                                 <% } %>
                 </div>
             </div>

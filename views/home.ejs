@@ -19,14 +19,17 @@
 
                 <div class="todo-list">
                     <% if(locals.tasks){ %>
-                        <% for(var i=0; i < tasks.length; i++){ %>
-                            <li>
-                                <input type="checkbox" name="check" class="check-size check" value="<%= tasks[i] %>" />
-                                <label for="check" class="strikethrough">
-                                    <%= tasks[i] %>
-                                </label>
-                            </li>
-                            <% } %>
+                        <% tasks.forEach(task=> { %>
+                            <form action="/deletetodo" method="post">
+                                <li>
+                                    <input type="checkbox" id="check" name="checkbox" class="check-size check" onChange="this.form.submit()"
+                                        value="<%= task._id %>" />
+                                    <label for="check" class="strikethrough">
+                                        <%= task.todo %>
+                                    </label>
+                                </li>
+                            </form>
+                            <% }) %>
                                 <% } %>
                 </div>
             </div>
