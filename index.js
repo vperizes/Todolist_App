@@ -30,6 +30,28 @@ const currentMonth = months[date.getMonth()];
 
 const today = currentDay + ", " + currentMonth + " " + date.getDate();
 
+//functions used for adding and deleting user defined tasks to models
+function addTodo(req, Model){
+    const inputText = req.body.todo;
+    //creating new document in Task collection
+    const newTodo = new Model({
+        todo: inputText
+    });
+    newTodo.save();
+}
+
+async function deleteTodo(req, Model) {
+    try {
+        const completedTodo = req.body.checkbox;
+        await Model.findByIdAndDelete(completedTodo);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+//app set up and requests
+
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -55,25 +77,12 @@ app.get("/home", (req, res) => {
 })
 
 app.post("/addtodo", (req, res) => {
-    const inputText = req.body["todo"];
-    //creating new document in Task collection
-    const newTodo = new Task({
-        todo: inputText
-    });
-    newTodo.save();
+    addTodo(req, Task);
     res.redirect("/home");
 })
 
 app.post("/deletetodo", (req, res) => {
-    async function deleteTodo() {
-        try {
-            const completedTodo = req.body.checkbox
-            await Task.findByIdAndDelete(completedTodo);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    deleteTodo();
+    deleteTodo(req, Task);
     res.redirect("/home");
 })
 
@@ -91,24 +100,12 @@ app.get("/work", (req, res) => {
 })
 
 app.post("/addworktodo", (req, res) => {
-    const inputText = req.body["worktodo"];
-    const newWorkTodo = new WorkTask({
-        todo: inputText
-    });
-    newWorkTodo.save();
+    addTodo(req, WorkTask);
     res.redirect("/work");
 })
 
 app.post("/deleteWorkTodo", (req, res) => {
-    async function deleteWorkTodo () {
-        try {
-            const completedWorktodo = req.body.checkbox;
-            await WorkTask.findByIdAndDelete(completedWorktodo);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    deleteWorkTodo();
+    deleteTodo(req, WorkTask);
     res.redirect("/work");
 })
 
