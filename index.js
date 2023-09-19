@@ -59,8 +59,21 @@ app.post("/addtodo", (req, res) => {
     //creating new document in Task collection
     const newTodo = new Task({
         todo: inputText
-    })
+    });
     newTodo.save();
+    res.redirect("/home");
+})
+
+app.post("/deletetodo", (req, res) => {
+    async function deleteTodo() {
+        try {
+            const completedTodo = req.body.checkbox
+            await Task.findByIdAndDelete(completedTodo);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    deleteTodo();
     res.redirect("/home");
 })
 
@@ -81,8 +94,21 @@ app.post("/addworktodo", (req, res) => {
     const inputText = req.body["worktodo"];
     const newWorkTodo = new WorkTask({
         todo: inputText
-    })
+    });
     newWorkTodo.save();
+    res.redirect("/work");
+})
+
+app.post("/deleteWorkTodo", (req, res) => {
+    async function deleteWorkTodo () {
+        try {
+            const completedWorktodo = req.body.checkbox;
+            await WorkTask.findByIdAndDelete(completedWorktodo);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    deleteWorkTodo();
     res.redirect("/work");
 })
 

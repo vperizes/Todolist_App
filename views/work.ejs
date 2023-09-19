@@ -19,15 +19,18 @@
 
                 <div class="todo-list">
                     <% if(locals.worktasks) { %>
-                        <% worktasks.forEach(worktask =>{ %>
-                            <li>
-                                <input type="checkbox" name="check" class="check-size check" value="<%= worktask.todo %>"/>
-                                <label for="check" class="strikethrough">
-                                    <%= worktask.todo %>
-                                </label>
-                            </li>
-                       <% }) %> 
-                       <% } %>
+                        <% worktasks.forEach(worktask=>{ %>
+                            <form action="/deleteWorkTodo" method="post">
+                                <li>
+                                    <input type="checkbox" name="checkbox" id ="check" class="check-size check" onChange="this.form.submit()"
+                                        value="<%= worktask._id %>" />
+                                    <label for="check" class="strikethrough">
+                                        <%= worktask.todo %>
+                                    </label>
+                                </li>
+                            </form>
+                            <% }) %>
+                                <% } %>
                 </div>
             </div>
         </div>
