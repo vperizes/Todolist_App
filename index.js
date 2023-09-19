@@ -51,7 +51,6 @@ async function deleteTodo(req, Model) {
 
 
 //app set up and requests
-
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
