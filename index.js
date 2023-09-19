@@ -5,10 +5,6 @@ import mongoose, { Schema } from "mongoose";
 const app = express();
 const port = 3000;
 
-// var tasks = [];
-// var workTasks = [];
-
-
 //setting up connection to mongo server and creating (or accessing if already created) todoDB
 mongoose.connect("mongodb://127.0.0.1:27017/todoDB");
 
