@@ -1,12 +1,15 @@
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose, { Schema } from "mongoose";
+import 'dotenv/config';
 
-const app = express();
-const port = 3000;
+
+//Database set up
+const DB_URI = process.env.DATABASE_URI || "mongodb://127.0.0.1:27017/todoDB";
+
 
 //setting up connection to mongo server and creating (or accessing if already created) todoDB
-mongoose.connect("mongodb://127.0.0.1:27017/todoDB");
+mongoose.connect(DB_URI);
 
 //schema for new task
 const taskSchema = new Schema({
@@ -17,6 +20,9 @@ const taskSchema = new Schema({
 const Task = mongoose.model("Task", taskSchema);
 const WorkTask = mongoose.model("WorkTask", taskSchema);
 
+//Handling app & express functionality
+const app = express();
+const port = 3000;
 
 const date = new Date();
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
