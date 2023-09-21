@@ -5,11 +5,11 @@ import 'dotenv/config';
 
 
 //Database set up
-const DB_URI = process.env.DATABASE_URI || "mongodb://127.0.0.1:27017/todoDB";
+const DATABASE_URI = process.env.DATABASE_URI || "mongodb://127.0.0.1:27017/todoDB";
 
 
 //setting up connection to mongo server and creating (or accessing if already created) todoDB
-mongoose.connect(DB_URI);
+mongoose.connect(DATABASE_URI);
 
 //schema for new task
 const taskSchema = new Schema({
@@ -22,7 +22,7 @@ const WorkTask = mongoose.model("WorkTask", taskSchema);
 
 //Handling app & express functionality
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT;
 
 const date = new Date();
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -57,8 +57,8 @@ app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}.`);
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}.`);
 })
 
 app.get("/", (req, res) => {
